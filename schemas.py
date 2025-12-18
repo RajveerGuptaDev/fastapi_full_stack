@@ -16,3 +16,6 @@ class UserLogin(BaseModel):
 class UserResponse(BaseModel):
     username: str
     employee_name: str
+
+class UserUpdate(BaseModel):
+    username: str

@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from database import SessionLocal, engine
 from models import Base, User, Employee
-from schemas import UserSignup, UserLogin, UserResponse
+from schemas import UserSignup, UserLogin, UserResponse , UserUpdate
 
 
 
@@ -65,6 +65,16 @@ def get_all_users(db: Session = Depends(get_db)):
         })
     return result
 
-@app.get("/temp")
-def temp_endpoint():
-    return {"message": "This is a temporary endpoint"}
+
+@app.put("/users/{user_id}")
+def update_user(user_id: int, data: UserUpdate, db: Session = Depends(get_db)):
+
+    user = db.query(User).filter(User.id == user_id).first()
+
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    user.username = data.username
+    db.commit()
+
+    return {"message": "User updated successfully"}
