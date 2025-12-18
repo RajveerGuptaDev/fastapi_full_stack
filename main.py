@@ -51,7 +51,6 @@ def signup(user: UserSignup, db: Session = Depends(get_db)):
         "employee_name": f"{employee.f_name} {employee.l_name}"
     }
 
-
 @app.get("/users")
 def get_all_users(db: Session = Depends(get_db)):
     users = db.query(User).all()
@@ -61,6 +60,11 @@ def get_all_users(db: Session = Depends(get_db)):
             "username": user.username,
             "employee": f"{user.employee.f_name} {user.employee.l_name}",
             "department": user.employee.dept,
-            "Earning": user.employee.salary
+            "Earning": user.employee.salary,
+            "Hire Date": user.employee.hire_date
         })
     return result
+
+@app.get("/temp")
+def temp_endpoint():
+    return {"message": "This is a temporary endpoint"}
