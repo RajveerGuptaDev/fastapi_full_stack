@@ -8,7 +8,7 @@ from database import SessionLocal
 from models import User
 import os
 
-# 🔐 CONFIG
+# CONFIG
 SECRET_KEY = os.getenv("SECRET_KEY") or "mysecretkey"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
@@ -17,7 +17,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 
-# 🔹 PASSWORD HASH
+# PASSWORD HASH
 def hash_password(password: str):
     return pwd_context.hash(password)
 
@@ -25,7 +25,7 @@ def verify_password(plain, hashed):
     return pwd_context.verify(plain, hashed)
 
 
-# 🔹 TOKEN CREATE
+# TOKEN CREATE
 def create_access_token(data: dict):
     to_encode = data.copy()
     expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
@@ -33,7 +33,7 @@ def create_access_token(data: dict):
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
-# 🔹 TOKEN VERIFY
+# TOKEN VERIFY
 def verify_token(token: str = Depends(oauth2_scheme)):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
@@ -45,7 +45,7 @@ def verify_token(token: str = Depends(oauth2_scheme)):
         )
 
 
-# 🔹 CURRENT USER
+# CURRENT USER
 def get_current_user(token_data: dict = Depends(verify_token)):
     db = SessionLocal()
     user = db.query(User).filter(User.id == token_data.get("user_id")).first()

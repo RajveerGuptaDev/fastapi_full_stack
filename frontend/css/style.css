@@ -1,0 +1,134 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   BACKGROUND (GOT CINEMATIC)
+========================= */
+.bg {
+  height: 100vh;
+  font-family: Arial, sans-serif;
+
+  /* Gradient + Image for highlight */
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(0,0,0,0.78) 0%,
+      rgba(0,0,0,0.45) 35%,
+      rgba(0,0,0,0.12) 65%
+    ),
+    url("../images/got.jpg");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  /* Chair / Throne slightly right */
+  background-position: 65% center;
+}
+
+/* =========================
+   OVERLAY (LAYOUT CONTROL)
+========================= */
+.overlay {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  /* Left-center but shifted right */
+  justify-content: flex-start;
+  padding-left: 140px;
+}
+
+/* =========================
+   CARD (GLASS EFFECT)
+========================= */
+.card {
+  width: 380px;
+  padding: 34px;
+
+  background: rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(8px);
+
+  color: #ffffff;
+  text-align: left;
+
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.25);
+
+  box-shadow: 0 0 30px rgba(0,0,0,0.85);
+}
+
+/* =========================
+   CARD TEXT
+========================= */
+.card h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.card p {
+  margin-bottom: 20px;
+  color: #e0e0e0;
+  font-style: italic;
+}
+
+/* =========================
+   INPUT FIELDS
+========================= */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+
+  border-radius: 6px;
+  border: none;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  font-size: 14px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 14px;
+
+  background: #c9a24d; /* GOT gold */
+  color: #000;
+
+  border: none;
+  border-radius: 6px;
+
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #d8b55a;
+}
+
+/* =========================
+   LINKS
+========================= */
+.link {
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.link a {
+  color: #c9a24d;
+  text-decoration: none;
+}
+
+.link a:hover {
+  text-decoration: underline;
+}
