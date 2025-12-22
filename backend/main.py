@@ -9,6 +9,16 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # ---------------- APP INIT ----------------
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],   # 👈 sab origins allow
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 Base.metadata.create_all(bind=engine)
 
 # ---------------- DB DEP ----------------
@@ -161,11 +171,4 @@ def delete_user(
 
     return {"message": "User deleted successfully"}
 
-# ---------------- CORS ----------------
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],   # 👈 sab origins allow
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
