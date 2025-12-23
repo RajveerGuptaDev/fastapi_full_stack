@@ -52,6 +52,27 @@ if (!response.ok) {
     "Salary: ₹" + data.salary;
 }
 
+
+const music = document.getElementById("gotMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let isPlaying = false;
+
+if (musicBtn && music) {
+  musicBtn.addEventListener("click", () => {
+    if (!isPlaying) {
+      music.volume = 0.4;
+      music.play();
+      musicBtn.innerText = "🔇 Pause Music";
+      isPlaying = true;
+    } else {
+      music.pause();
+      musicBtn.innerText = "🔊 Play Music";
+      isPlaying = false;
+    }
+  });
+}
+
 /* ==========================
    LOGOUT
 ========================== */
